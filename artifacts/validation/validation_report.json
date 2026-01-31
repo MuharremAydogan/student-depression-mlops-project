@@ -1,0 +1,15 @@
+{
+    "validated_columns": [
+        "Age",
+        "Gender",
+        "Department",
+        "CGPA",
+        "Sleep_Duration",
+        "Study_Hours",
+        "Social_Media_Hours",
+        "Physical_Activity",
+        "Stress_Level",
+        "Depression"
+    ],
+    "is_valid": true
+}

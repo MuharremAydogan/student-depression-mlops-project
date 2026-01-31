@@ -1,0 +1,17 @@
+data:
+  ingestion:
+    data_path: Data/data.csv
+    train_data_path: artifacts/data/train.csv
+    test_data_path: artifacts/data/test.csv
+  validation:
+    report_path: artifacts/validation/validation_report.json
+    schema_path: src/config/schema.yml  
+
+  transformation:
+    train_transformed_path: "artifacts/transformed/train.csv"
+    test_transformed_path: "artifacts/transformed/test.csv"
+    pickle_obj_path: "artifacts/objects/processor.pkl"
+
+model:
+  model_pickle_path: "artifacts/objects/model.pkl"
+  model_report_path: "artifacts/objects/model_report.json"      

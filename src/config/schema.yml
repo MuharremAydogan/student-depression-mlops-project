@@ -1,0 +1,13 @@
+Columns:
+  Age: int64
+  Gender: object
+  Department: object
+  CGPA: float64
+  Sleep_Duration: float64
+  Study_Hours: float64
+  Social_Media_Hours: float64 
+  Physical_Activity: int64
+  Stress_Level: int64
+  Depression: bool  
+Target:
+  Name: "Depression"  
