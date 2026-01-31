@@ -8,6 +8,8 @@ import pandas as pd
 import mlflow.sklearn
 import mlflow
 import json
+import dagshub
+dagshub.init(repo_owner='muharremaydogan354', repo_name='student-depression-mlops-project', mlflow=True)
 class ModelEvaluation:
     def __init__(self,model_train_artifacts:ModelTrainArtifacts,model_eval_config:ModelEvualtionConfig):
         self.model_train_artifacts=model_train_artifacts
@@ -37,6 +39,17 @@ class ModelEvaluation:
 
         acc=accuracy_score(y_test,y_pred)
         cm=str(confusion_matrix(y_test,y_pred))
+
+        with open("artifacts/objects/model_param.json","r") as f:
+            model_params=json.load(f)
+        mlflow.set_experiment("StudentDepression")
+        with mlflow.start_run():
+            mlflow.log_metric("accuracy",acc)
+            mlflow.log_text(cm,"confusion_matrix.txt")
+            mlflow.log_param("model_name",model_name)
+            mlflow.log_params(model_params)
+            mlflow.sklearn.log_model(model,model_name)
+
 
         report={"acc":acc,"cm":cm}
 

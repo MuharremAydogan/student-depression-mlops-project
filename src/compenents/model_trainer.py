@@ -7,6 +7,7 @@ import pandas as pd
 from pathlib import Path
 from sklearn.metrics import accuracy_score
 import pickle
+import json
 class ModelTrain:
     def __init__(self,model_train_config:ModelTrainConfig,data_transformation_artifacts:data_transformation_artifacts,target_col:str):
         self.model_train_config=model_train_config
@@ -58,7 +59,7 @@ class ModelTrain:
         best_acc = 0
         best_model = None
         best_model_name = None
-
+        best_params=None
         for name, model in models.items():
 
             params = model_params[name]
@@ -80,9 +81,18 @@ class ModelTrain:
                 best_acc = acc
                 best_model = grid_model.best_estimator_
                 best_model_name = name
+                best_params=grid_model.best_params_
 
         print("Best model:", best_model_name)
         print("Best accuracy:", best_acc)
+
+        model_param_path="artifacts/objects/model_param.json"
+        model_param_path=Path(model_param_path)
+        model_param_path.parent.mkdir(parents=True,exist_ok=True)
+        
+        with open(model_param_path,mode="w") as f:
+            json.dump(best_params,f,indent=4)
+
 
         model_output_path=self.model_train_config.model_output_path
         model_output_path.parent.mkdir(parents=True,exist_ok=True)
