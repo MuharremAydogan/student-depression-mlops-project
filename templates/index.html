@@ -1,0 +1,44 @@
+<form method="POST" action="/predict">
+
+    <label>Age</label>
+    <input type="number" id="age" name="age" required>
+
+    <label>Gender</label>
+    <select id="gender" name="gender" required>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+    </select>
+
+    <label>Department</label>
+    <input type="text" id="department" name="department" value="Science" required>
+
+    <label>CGPA</label>
+    <input type="number" step="0.01" id="cgpa" name="cgpa" required>
+
+    <label>Sleep Duration</label>
+    <input type="number" step="0.1" id="sleep" name="sleep" required>
+
+    <label>Study Hours</label>
+    <input type="number" step="0.1" id="study" name="study" required>
+
+    <label>Social Media Hours</label>
+    <input type="number" step="0.1" id="social" name="social" required>
+
+    <label>Physical Activity</label>
+    <input type="number" id="physical" name="physical" required>
+
+    <label>Stress Level</label>
+    <input type="number" id="stress" name="stress" required>
+
+    <button type="submit">Predict</button>
+</form>
+
+<div id="result">
+{% if prediction is not none %}
+    {% if prediction == 1 %}
+        Prediction: Depression detected
+    {% else %}
+        Prediction: No depression
+    {% endif %}
+{% endif %}
+</div>
