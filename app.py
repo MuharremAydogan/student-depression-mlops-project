@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from src.pipeline.modelpredictPipeline import Predict
-
+from main import main
 app = Flask(__name__)
 
 predictor = Predict()
@@ -10,6 +10,13 @@ predictor = Predict()
 def homepage():
     return render_template("index.html", prediction=None)
 
+@app.route("/train")
+def train():
+    try:
+        main()
+        return "Training succesfuly"
+    except Exception as e:
+        raise e     
 
 @app.route("/predict", methods=["POST"])
 def predict():
