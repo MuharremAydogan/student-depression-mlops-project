@@ -8,12 +8,13 @@ from pathlib import Path
 from sklearn.metrics import accuracy_score
 import pickle
 import json
+from src.cloud.s3_syncer import S3Sync
 class ModelTrain:
     def __init__(self,model_train_config:ModelTrainConfig,data_transformation_artifacts:data_transformation_artifacts,target_col:str):
         self.model_train_config=model_train_config
         self.data_transformation_artifacts=data_transformation_artifacts
         self.target_col=target_col
-    
+        self.s3_sync=S3Sync()
     def models(self):
         models={"rf":RandomForestClassifier(random_state=42),"adaboost":AdaBoostClassifier(random_state=42),"gb":GradientBoostingClassifier(random_state=42)}
         model_params = {
@@ -101,6 +102,15 @@ class ModelTrain:
             pickle.dump(best_model,f)
 
         model_train_artifacts=ModelTrainArtifacts(model_output_path=model_output_path,acc=best_acc,best_model_name=best_model_name)
+
+        #model push to s3
+        folder="artifacts"
+        try:
+            aws_bucket_url=f"s3://studentdepression"
+            self.s3_sync.sync_folder_to_s3(folder=folder,aws_bucket_url=aws_bucket_url)
+        except Exception as e :
+            raise e    
+
         return model_train_artifacts
 
         
