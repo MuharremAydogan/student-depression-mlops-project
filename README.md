@@ -275,7 +275,10 @@ kayıt altına alınır.
 
 📁 Proje Klasör Yapısı
 
-student-depression-mlops-project
+
+
+```text
+student-depression-mlops-project/
 │
 ├── artifacts/
 │   ├── data/
@@ -311,6 +314,7 @@ student-depression-mlops-project
 ├── main.py
 ├── Dockerfile
 ├── requirements.txt
+│
 └── .github/
     └── workflows/
         └── workflow.yml
