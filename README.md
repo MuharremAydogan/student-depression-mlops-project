@@ -1,1 +1,1 @@
-# Student Depression With MLOp
+# Student Depression With MLOps
