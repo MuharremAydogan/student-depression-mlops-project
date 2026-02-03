@@ -372,4 +372,4 @@ Self-hosted runner ile gerçek production benzeri deployment
 Muharrem Aydoğan
 
 Bu proje, gerçek hayattaki MLOps süreçlerini göstermek amacıyla;
-model yaşam döngüsü, deney takibi ve üretim ortamına dağıtım adımlarını kapsayacak şekilde geliştirilmiştir..
+model yaşam döngüsü, deney takibi ve üretim ortamına dağıtım adımlarını kapsayacak şekilde geliştirilmiştir.
